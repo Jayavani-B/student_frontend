@@ -2,11 +2,12 @@ import React, { useState } from "react";
 
 function AddStudent({ setStudents }) {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [grade,setGrade]=useState("");
+  const[subject,setSubject]=useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newStudent = { name, email };
+    const newStudent = { name,grade,subject };
 
     fetch("http://localhost:5000/api/students", {
       method: "POST",
@@ -17,7 +18,8 @@ function AddStudent({ setStudents }) {
       .then((data) => {
         setStudents((prev) => [...prev, data]);
         setName("");
-        setEmail("");
+        setGrade("");
+        setSubject("");
       })
       .catch((err) => console.error(err));
   };
@@ -32,12 +34,17 @@ function AddStudent({ setStudents }) {
         required
       />
       <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
+      type="number"
+      placeholder="Grade"
+      value={grade} onChange={(e)=>setGrade(e.target.value)}
+      required
       />
+      <input
+      type="text"
+      placeholder="Subject"
+      value={subject} onChange={(e)=>setSubject(e.target.value)}
+      />
+
       <button type="submit">Add Student</button>
     </form>
   );

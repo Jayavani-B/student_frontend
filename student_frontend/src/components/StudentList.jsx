@@ -26,7 +26,8 @@ function StudentList({ students, setStudents }) {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Email</th>
+            <th>Grade</th>
+            <th>Subject</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -34,7 +35,8 @@ function StudentList({ students, setStudents }) {
           {students.map((s) => (
             <tr key={s._id}>
               <td>{s.name}</td>
-              <td>{s.email}</td>
+              <td>{s.grade}</td>
+              <td>{s.subject}</td>
               <td>
                 <button onClick={() => setEditingStudent(s)}>Edit</button>
                 <button onClick={() => handleDelete(s._id)}>Delete</button>
